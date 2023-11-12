@@ -1,0 +1,988 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: #888 transparent;
+}
+
+body {
+    font-family: sans-serif; 
+    min-height: 100vh;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+
+/* ----------------------------- barre de scroll ------------------------------------ */
+
+/* Personnaliser la barre de défilement globale de la page */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    /* Hauteur pour les barres de défilement horizontales */
+}
+
+/* Le track (chemin de la barre de défilement) */
+::-webkit-scrollbar-track {
+    background: transparent;
+    /* Couleur de fond du track */
+    border-radius: 10px;
+}
+
+/* La handle (partie de la barre que l'on déplace) */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    /* Couleur de fond de la handle */
+    border-radius: 10px;
+    /* Arrondir les coins pour la forme de pilule */
+    border: 2px solid transparent;
+    /* Réduire la taille effective avec une bordure transparente */
+    background-clip: padding-box;
+    /* Empêcher la couleur de fond de se propager dans la bordure */
+}
+
+/* Au survol ou au clic sur la handle */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    /* Couleur de fond au survol */
+}
+
+
+/* -----------------------------navbar------------------------------------ */
+
+.logo img,
+.btn-menu {
+    width: 60px;
+    height: auto;
+    display: block;
+    transition: all 0.3s ease;
+    /* Ajout d'une transition pour une modification en douceur */
+}
+
+.navbar {
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar .logo {
+    margin-top: 10px;
+    font-size: 2em;
+}
+
+.navbar .nav-links ul {
+    margin-top: 20px;
+    display: flex;
+}
+
+.navbar .nav-links ul li {
+    margin: 0 25px;
+}
+
+.navbar .nav-links ul li a.btn-login {
+    background-color: green;
+    /* couleur de fond du bouton */
+    padding: 5px 15px;
+    /* padding autour du texte */
+    border-radius: 5px;
+    /* bordures arrondies */
+    transition: 0.3s ease;
+    /* transition pour les effets hover */
+}
+
+.navbar .nav-links ul li a.btn-login:hover {
+    background-color: #4CAF50;
+    /* couleur de fond du bouton lors du survol */
+    color: black;
+    /* couleur du texte lors du survol */
+}
+
+.navbar .nav-links ul li.active a {
+    color: green;
+}
+
+.navbar .menu-deroulent {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 30px;
+    width: 35px;
+    margin-top: 10px;
+}
+
+.navbar.reduced {
+    padding: 9px 50px;
+    background-color: black;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar.reduced .menu-deroulent {
+    width: 50px;
+    /* Réduction de la largeur du menu déroulant lors du scroll */
+    top: 20px;
+    /* Ajustement de la position en haut pour le menu déroulant */
+}
+
+.navbar.reduced .logo img {
+    width: 40px;
+    margin-top: 0px;
+    /* Réduction de la taille du logo lors du scroll */
+}
+
+ .navbar.reduced .logo {
+    margin-top: 0px;
+}
+
+.navbar.reduced .nav-links ul {
+    margin-top: 2px;
+}
+
+.navbar.reduced .menu-deroulent {
+    margin-top: -2px;
+}
+
+
+@media screen and (max-width: 900px) {
+    .navbar {
+        padding: 0;
+        flex-direction: column;
+        /* Modifié pour que le logo et le bouton menu soient l'un en dessous de l'autre */
+        background-color: transparent;
+    }
+
+    .navbar .logo,
+    .navbar .menu-deroulent {
+        width: 100%;
+        text-align: center;
+        padding: 0 10px;
+        /* Ajout d'un padding pour séparer le logo et le bouton du menu déroulant */
+    }
+
+    .navbar .logo img {
+        margin-top: 0px;
+    }
+
+    .navbar .menu-deroulent {
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 30px;
+        width: 60px;
+    }
+
+    .nav-links {
+        top: 0;
+        /* Augmentation de la valeur pour que le menu déroulant n'empiète pas sur le logo ou le bouton */
+        left: 0;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.20);
+        backdrop-filter: blur(8px);
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: -100%;
+        transition: all 0.5s ease;
+    }
+
+    .nav-links.mobile-menu {
+        margin-left: 0;
+    }
+
+    .nav-links ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar .nav-links ul li {
+        margin: 25px 0;
+        font-style: 1.2em;
+    }
+}
+
+/* ----------------------------------- Profil utilisateur ---------------------------------------- */
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .user-profile .profile-pic {
+    width: 15px; /* La largeur de l'image du profil */
+    height: 10px; /* La hauteur de l'image du profil */
+    border-radius: 50%; /* Pour rendre l'image circulaire */
+    object-fit: cover; /* Pour s'assurer que l'image couvre toute la zone sans être déformée */
+}
+
+.navbar .user-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.username {
+    margin-left: 10px; /* Ajustez selon l'espacement désiré */
+    color: white; /* Ou toute autre couleur appropriée */
+    /* Ajoutez ici d'autres propriétés de style selon vos besoins */
+}
+
+.welcome-message {
+    color: white; /* Ou la couleur que vous préférez */
+    margin-right: 10px; /* Ajustez l'espacement comme nécessaire */
+    font-weight: normal; /* Style normal par défaut */
+}
+
+.welcome-message strong {
+    font-weight: bold; /* Met le nom d'utilisateur en gras */
+}
+
+
+/* -----------------------------section & autre mise en page------------------------------------*/
+
+.margine {
+    width: 100px;
+    height: 100px;
+}
+
+.section-black {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+center {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.section-grande {
+    width: 100%;
+    margin-bottom: 100vh;
+    padding-bottom: 20px;
+}
+
+.h1 {
+
+    font-size: 80px;
+    font-weight: bold;
+}
+
+/* ----------------------------- btn custom ------------------------------------*/
+
+.custom-btn {
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 40px;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+/* -----------------------------Text animer------------------------------------*/
+.main-section {
+    height: 100vh;
+    /* Hauteur pour permettre un long défilement */
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    /* Ajout de cette ligne pour aligner les éléments verticalement */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: sans-serif;
+    /* Centre le texte horizontalement */
+}
+
+.animated-text {
+    font-size: 70px;
+    /* Augmentation de la taille de la police */
+    font-weight: bold;
+    /* Rendre le texte plus épais */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.7;
+    /* Ajustement de l'espacement entre les lignes */
+    /*text-align: justify;  Justifie le texte */
+    padding-left: 250px;
+    /* Marge à gauche */
+    padding-right: 250px;
+    /* Marge à droite */
+}
+
+#video2 {
+    position: absolute;
+    opacity: 0;
+    /* Au départ, la vidéo est cachée */
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+}
+
+/* Pour les écrans de taille moyenne comme les tablettes */
+@media (max-width: 1024px) {
+    .animated-text {
+        font-size: 70px;
+        /* Ajustement de la taille de la police pour les tablettes */
+        padding-left: 150px;
+        padding-right: 150px;
+    }
+}
+
+/* Pour les écrans de petite taille comme les téléphones */
+@media (max-width: 768px) {
+    .animated-text {
+        font-size: 50px;
+        /* Ajustement de la taille de la police pour les téléphones */
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-section {
+        padding: 10px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
+/* ----------------------------- revolution cards ------------------------------------*/
+
+.container {
+    max-width: 100%;
+    background-color: black;
+    margin-bottom: 5px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* Responsivité pour les petites résolutions */
+}
+
+.col-6 {
+    flex: 0 0 49.99%;
+    max-width: 49.99%;
+}
+
+.col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.py-5 {
+    padding: 3rem 0;
+}
+
+.revolution {
+    background-color: black;
+}
+
+.revolution .card {
+    width: 80%;
+    margin: 0 10%;
+    background: linear-gradient(to right top, #071931 0%, #33274f 50%, #661e43 100%);
+    border-radius: 30px;
+    padding: 3rem 0 3rem 3rem;
+    color: white;
+    margin-bottom: 10vh;
+    transition: all 1s ease-in-out;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.revolution .card h1 {
+    font-size: 60px;
+    font-weight: 600;
+}
+
+.revolution .card .subtitle {
+    color: #8679cb;
+    font-size: 30px;
+    font-weight: 200;
+}
+
+.revolution .card .btn-outline-secondary {
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 40px;
+    padding: 10px 30px;
+    color: white;
+    cursor: pointer;
+    /* Ajouté pour indiquer qu'il s'agit d'un bouton */
+    transition: background-color 0.3s, color 0.3s;
+    /* Pour une transition en douceur */
+}
+
+.revolution .card .btn-outline-secondary:hover {
+    background-color: white;
+    color: black;
+}
+
+.revolution .card.visible {
+    opacity: 1;
+    transform: none;
+}
+
+.video {
+    animation: display-smooth 3s;
+    opacity: 100%;
+    z-index: 0;
+}
+
+@keyframes display-smooth {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* ----------------------------- Popup vue 3D ------------------------------------*/
+
+.popup-overlay {
+    display: none; /* Caché par défaut */
+    position: fixed; /* Reste en place lors du défilement */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Grisé avec un peu de transparence */
+    backdrop-filter: blur(5px); /* Effet de flou pour les navigateurs qui le supportent */
+    z-index: 1050; /* Assurez-vous qu'il est au-dessus des autres éléments */
+}
+
+.popup {
+    background: #33274f; /* Utilisez le style de .revolution .card */
+    border-radius: 30px;
+    padding: 2rem; /* Réduire le rembourrage si nécessaire */
+    position: relative; /* Position relative pour le positionnement du bouton de fermeture */
+    width: 80vw; /* Ajustez la largeur de la popup */
+    max-width: 1200px; /* Agrandissez la taille maximale de la popup */
+    height: 80vh; /* Hauteur de la popup */
+    margin: 10vh auto; /* Centré avec un peu d'espace en haut et en bas */
+    transition: all 0.5s ease-in-out;
+    transform: translateY(-50px); /* Petite animation */
+    opacity: 0; /* Commence caché */
+    overflow-y: auto; /* Active le défilement vertical si nécessaire */
+    display: flex; /* Utilisez flexbox pour centrer le contenu verticalement */
+    flex-direction: column; /* Disposer les éléments en colonne */
+    align-items: center; /* Centrer les éléments horizontalement */
+    justify-content: center; /* Centrer les éléments verticalement */
+}
+
+.popup.visible {
+    transform: translateY(0); /* Retour à la position normale */
+    opacity: 1;
+}
+
+.popup::-webkit-scrollbar {
+    display: none; /* Cache la barre de défilement */
+}
+
+
+.close-popup-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border: none;
+    background: none;
+    color: white;
+    /* ou la couleur souhaitée pour la croix */
+    font-size: 24px;
+    /* ou la taille souhaitée pour la croix */
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+}
+
+/* Vous pouvez également ajouter des effets au survol, si désiré */
+.close-popup-btn:hover {
+    color: #ccc;
+    /* couleur au survol */
+}
+
+.video-popup-content {
+    width: 95%; /* La vidéo prend presque toute la largeur de la popup */
+    max-height: 75vh; /* Hauteur maximale pour une bonne visibilité */
+    border-radius: 20px; /* Rayon de bordure pour adoucir les coins de la vidéo */
+}
+
+.scroll-instruction {
+    color: #838383; /* Couleur blanche pour le texte */
+    margin-top: 1rem; /* Un peu d'espace au-dessus du texte */
+    font-size: 1rem; /* Taille du texte */
+    align-self: flex-start; /* Aligner le texte à gauche */
+}
+
+
+/* ----------------------------- section grille cards ------------------------------------*/
+
+.box.initial-state {
+    opacity: 0;
+    transform: translateX(50px);
+}
+
+.custom-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 0 20px;
+    flex: 1;
+    /* Assurez-vous que cela occupe l'espace disponible */
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+
+.box {
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+
+}
+
+.large {
+    grid-column: span 2;
+    grid-row: span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.medium {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+.small {
+    background-color: #ecf0f1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+.icons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    height: auto;
+}
+
+/* Pour les tablettes */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .custom-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Pour les mobiles */
+@media (max-width: 768px) {
+    .custom-section {
+        grid-template-columns: 1fr;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .large,
+    .medium,
+    .small {
+        grid-column: span 1;
+    }
+}
+
+
+/* ----------------------------- footer ------------------------------------ */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+.footer {
+    width: 100%;
+    background-color: green;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+    /* Espacement entre le contenu de la page et le footer */
+
+}
+
+.social-icon,
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+.social-icon__item,
+.menu__item {
+    list-style: none;
+}
+
+.social-icon__link {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+.social-icon__link:hover {
+    transform: translateY(-10px);
+}
+
+.menu__link {
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+    text-decoration: none;
+    opacity: 0.75;
+    font-weight: 300;
+}
+
+.menu__link:hover {
+    opacity: 1;
+}
+
+.footer p {
+    color: #fff;
+    margin: 15px 0;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+
+
+/* ----------------------------- login & register ------------------------------------*/
+
+.close-popup-btn-connexion {
+    position: absolute;
+    top: 3px; /* Alignement en haut */
+    right: 6px; /* Alignement à droite */
+    padding: 10px; /* Espace autour du bouton pour faciliter le clic */
+    border: none;
+    background: none;
+    color: white;
+    /* ou la couleur souhaitée pour la croix */
+    font-size: 24px;
+    /* ou la taille souhaitée pour la croix */
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+}
+
+/* Vous pouvez également ajouter des effets au survol, si désiré */
+.close-popup-btn-connexion:hover {
+    color: #ccc;
+    /* couleur au survol */
+}
+
+.modal-container {
+    display: none; /* caché par défaut */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px); /* Floutage de l'arrière-plan */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative; /* Ajustement pour le positionnement de .close-popup-btn */
+    margin: auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+}
+
+.card {
+    background-color: #333; /* ou une couleur de fond de votre choix */
+    border-radius: 10px;
+    color: white;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.card-header h2 {
+    text-align: center;
+}
+
+.card-body {
+    margin: 20px 0;
+}
+
+.card-body form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.card-body form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+
+.captcha-container {
+    float: left; /* positionnement à gauche */
+    margin-bottom: 20px; /* espace entre le captcha et le bouton */
+}
+
+
+.form-footer button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2196F3; /* ou une couleur de votre choix */
+    color: white;
+    cursor: pointer;
+    margin-left: 112px;
+    
+}
+
+.form-footer button:hover {
+    background-color: #1976D2; /* Un bleu un peu plus foncé au survol */
+}
+
+.card-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.card-footer a {
+    color: #0d6efd; /* ou une couleur de votre choix */
+    text-decoration: none;
+    font-weight: bold;
+    text-align: left;
+}
+
+/* Style pour les liens 'Inscrivez-vous' et 'Connectez-vous' */
+#show-register-form, #show-login-form {
+    color: #2196F3; /* Même couleur bleue que les boutons de base */
+    cursor: pointer;
+    transition: color 0.3s; /* Pour un effet de transition doux */
+}
+
+#show-register-form:hover, #show-login-form:hover {
+    color: #1976D2; /* Bleu un peu plus foncé au survol */
+}
+
+
+/* ------------------ Style spécifique pour la pop-up d'inscription ----------------------------------------- */
+
+.modal-scroll-content {
+    margin-top: 100px; /* Ajoute une marge en haut pour éviter la navbar */
+    overflow-y: auto; /* Permet le défilement vertical */
+    max-height: 90vh; /* Hauteur maximale pour la pop-up */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.modal-scroll-content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari et Opera */
+}
+
+/* ----------------- robustesse mdp ------------------ */
+#password-strength-meter {
+    width: 35%; /* ou une largeur plus petite si vous le souhaitez */
+    height: 2px; /* réduisez la hauteur de la barre */
+    border-radius: 5px; /* coins arrondis */
+}
+
+.password-strength {
+    margin-top: 5px;
+    display: none; /* initialement caché */
+}
+
+
+
+/* --------------- reste ------------- */
+.close-popup-btn-connexion-inscription {
+    position: absolute;
+    top: 3px; /* Alignement en haut */
+    right: 6px; /* Alignement à droite */
+    padding: 5px; /* Espace autour du bouton pour faciliter le clic */
+    border: none;
+    background: none;
+    color: white;
+    /* ou la couleur souhaitée pour la croix */
+    font-size: 24px;
+    /* ou la taille souhaitée pour la croix */
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+}
+
+/* Vous pouvez également ajouter des effets au survol, si désiré */
+.close-popup-btn-connexion-inscription:hover {
+    color: #ccc;
+    /* couleur au survol */
+}
+
+.form-footer-inscription button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2196F3; /* ou une couleur de votre choix */
+    color: white;
+    cursor: pointer;
+    float: left;
+    margin-bottom: -35px;   
+}
+
+.form-footer-inscription button:hover {
+    background-color: #1976D2; /* Un bleu un peu plus foncé au survol */
+}
+
+
+.register-modal-dialog {
+    display: none; /* caché par défaut */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px); /* Floutage de l'arrière-plan */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-card {
+    background-color: #333; /* ou une couleur de fond de votre choix */
+    border-radius: 20px;
+    color: white;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+
+.register-card-header {
+    /* Ajustements pour le header de la card spécifique à l'inscription */
+    margin-bottom: 2px; /* Espace réduit en-dessous du titre */
+}
+
+
+
+/* ----------------------------------- Page "Qui sommes-nous ?" ---------------------------------------- */
+
+.full-background {
+    width: 100%;
+    height: 100vh; /* Ajustez en fonction de la hauteur souhaitée pour la section */
+    background-image: url('../assets/img/fond_feuille2.png'); /* Chemin de votre image de fond */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center; /* Alignement vertical au centre */
+    justify-content: center; /* Alignement horizontal au centre */
+  }
+  
+  .presentation-container {
+    width: 70%; /* Ajustez en fonction de la largeur souhaitée pour le texte */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.6); /* Fond semi-transparent pour la lisibilité */
+    text-align: center; /* Centrer le texte à l'intérieur du conteneur */
+    border-radius: 20px; /* Coins arrondis pour le conteneur */
+    /* Pour plus de lisibilité, vous pourriez vouloir ombre portée ou un contour */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px); /* Effet de flou pour le fond (non supporté dans tous les navigateurs) */
+  }
+  
+  .presentation-container h1 {
+    margin-top: -290px;
+    margin-bottom: 40px;
+  }
+  
+  .presentation-container p {
+    font-size: 1em; /* Taille de la police */
+    line-height: 1.6; /* Hauteur de ligne pour le texte du paragraphe */
+  }
+
+  .margine-top-div {
+    margin-top: -50px;
+  }
+

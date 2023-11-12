@@ -1,0 +1,11 @@
+body {
+    background-image: url('/assets/img/serre_luxuriante_pierre_tailler.png'); /* Remplacez par le chemin de votre image de fond */
+    background-size: cover; /* Ajustez l'image pour couvrir toute la zone */
+    background-position: center center; /* Centre l'image */
+    background-repeat: no-repeat; /* Évite que l'image ne se répète */
+    background-attachment: fixed; /* Garde l'image fixe lors du défilement */
+    height: 100vh; /* Hauteur totale de la fenêtre de visualisation */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Évite les défilements horizontaux indésirables */
+}
