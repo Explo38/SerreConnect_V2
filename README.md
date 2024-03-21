@@ -1,16 +1,14 @@
-🛰️ Discovery en C#
-🌌 Vue d'ensemble
-Discovery est une application immersive qui permet aux utilisateurs d'explorer l'espace, d'afficher des informations sur les astéroïdes proches de notre planète et de s'amuser avec un space shooter intégré. Les données présentées dans l'application sont récupérées via l'API de la NASA, assurant une expérience éducative pour tous les amateurs d'astronomie.
+# Projet de serre connecter - SerreConnect
 
-🎮 Données de l'espace
-Visualisation spatiale: Découvrez tous les jours des informations sur l'espace et les astéroïdes depuis le tableau de bord principal.
-Visualisation 3D des astéroïdes: Interagissez avec la visualisation 3D des astéroïdes pour apprendre leur taille, distance de la Terre, et plus.
-Space Shooter intégré: Contrôlez votre vaisseau spatial et détruisez les astéroïde.
-📸 Captures d'Écran de l'Application
-Discovery Dashboard
+## 🏡 Objectif du Projet
+Le projet SerreConnect vise a crée une serre connecter autonome grace a de multiple capteur present a l'interieur.
 
- 
-3D Asteroids
 
- 
-Space Shooter
+## 💻 Site Web 
+- Création d’un site web pour présenter le projet et ses fonctionnalités dont un espace utilisateur ou il est possible de visualiser sa serre et de voir les donner des capteurs.
+
+
+## 📸 Captures d'Écran de l'Application
+²²
+### Ajout d'un Robot
+![SteelStrickersAddRobot](https://github.com/Fillraen/SteelStrickers/blob/main/SteelStrickersAddRobot.PNG)
