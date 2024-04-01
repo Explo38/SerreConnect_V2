@@ -11,4 +11,4 @@ Le projet SerreConnect vise a crée une serre connecter autonome grace a de mult
 ## 📸 Captures d'Écran de l'Application
 
 ### Ajout d'un Robot
-![SerreConnectAcceuil]([https://github.com/Explo38/SerreConnect_V2/blob/main/acceuil.png])
+![SerreConnectAcceuil](https://github.com/Explo38/SerreConnect_V2/blob/main/acceuil.png)
