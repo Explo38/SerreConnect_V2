@@ -9,6 +9,6 @@ Le projet SerreConnect vise a crée une serre connecter autonome grace a de mult
 
 
 ## 📸 Captures d'Écran de l'Application
-²²
+
 ### Ajout d'un Robot
 ![SteelStrickersAddRobot](https://github.com/Fillraen/SteelStrickers/blob/main/SteelStrickersAddRobot.PNG)
