@@ -1,29 +1,29 @@
 # Projet de serre connecter - SerreConnect
 
 ## 🏡 Objectif du Projet
-Le projet SerreConnect vise a crée une serre connecter autonome grace a de multiple capteur present a l'interieur.
+Le projet SerreConnect vise à créer une serre connectée autonome grâce à de multiples capteurs présents à l'intérieur.
 
 
 ## 💻 Site Web 
-- Création d’un site web pour présenter le projet et ses fonctionnalités dont un espace utilisateur ou il est possible de visualiser sa serre et de voir les donner des capteurs.
+- Création d'un site web pour présenter le projet et ses fonctionnalités, incluant un espace utilisateur où il est possible de visualiser sa serre et de consulter les données des capteurs.
 
 
 ## 📸 Captures d'Écran de l'Application
 
-### Annimation d'acceuil
+### Animation d'accueil
 ![SerreConnectAcceuil](https://github.com/Explo38/SerreConnect_V2/blob/main/acceuil.png)
 
-### Annimation texte
+### Animation de texte
 ![SerreConnectAcceuil](https://github.com/Explo38/SerreConnect_V2/blob/main/annimation%20texte.png)
 
-### Visualization 3D
+### Visualisation 3D
 ![SerreConnectAcceuil](https://github.com/Explo38/SerreConnect_V2/blob/main/vue%203d.png)
 
-### Affichage capteur & image
+### Affichage de capteurs et d'images
 ![SerreConnectAcceuil](https://github.com/Explo38/SerreConnect_V2/blob/main/pannel%20image%20et%20menu%20deroulent%20.png)
 
-### Menu connexion 
+### Menu de connexion 
 ![SerreConnectAcceuil](https://github.com/Explo38/SerreConnect_V2/blob/main/connexion.png)
 
-### Menu inscription 
+### Menu d'inscription 
 ![SerreConnectAcceuil](https://github.com/Explo38/SerreConnect_V2/blob/main/inscription.png)
