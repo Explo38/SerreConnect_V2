@@ -1,4 +1,4 @@
-# Projet de serre connecter - SerreConnect
+# Projet de serre connectée - SerreConnect
 
 ## 🏡 Objectif du Projet
 Le projet SerreConnect vise à créer une serre connectée autonome grâce à de multiples capteurs présents à l'intérieur.
